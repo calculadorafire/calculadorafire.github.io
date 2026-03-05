@@ -1,7 +1,9 @@
 "use client";
 
 import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { MoreInfoButton } from "@/components/shared/MoreInfoButton";
+import { WithdrawalInfo } from "@/components/results/tabDescriptions";
 import { formatBRL } from "@/engine/utils";
 import type { WithdrawalAnalysisEntry } from "@/engine/types";
 
@@ -13,7 +15,15 @@ export function WithdrawalAnalysis({ entries }: WithdrawalAnalysisProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">Análise de Retirada</CardTitle>
+        <div className="flex items-center justify-between">
+          <CardTitle className="text-lg">Análise de Retirada</CardTitle>
+          <MoreInfoButton title="Análise de Retirada (SWR)">
+            <WithdrawalInfo />
+          </MoreInfoButton>
+        </div>
+        <CardDescription>
+          Análise de sustentabilidade do patrimônio com diferentes taxas de retirada anual (SWR).
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="overflow-x-auto">

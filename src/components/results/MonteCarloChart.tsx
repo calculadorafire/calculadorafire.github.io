@@ -10,7 +10,9 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { MoreInfoButton } from "@/components/shared/MoreInfoButton";
+import { MonteCarloInfo } from "@/components/results/tabDescriptions";
 import { formatBRL } from "@/engine/utils";
 import type { MonteCarloResult } from "@/engine/types";
 
@@ -35,12 +37,20 @@ export const MonteCarloChart = React.memo(function MonteCarloChart({ result }: M
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">
-          Simulação Monte Carlo
-          <span className="ml-2 text-sm font-normal text-muted-foreground">
-            ({result.simulations.length} simulações)
-          </span>
-        </CardTitle>
+        <div className="flex items-center justify-between">
+          <CardTitle className="text-lg">
+            Simulação Monte Carlo
+            <span className="ml-2 text-sm font-normal text-muted-foreground">
+              ({result.simulations.length} simulações)
+            </span>
+          </CardTitle>
+          <MoreInfoButton title="Simulação Monte Carlo">
+            <MonteCarloInfo />
+          </MoreInfoButton>
+        </div>
+        <CardDescription>
+          Simulação de {result.simulations.length} cenários aleatórios para o seu patrimônio. As faixas mostram os percentis P5 a P95.
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="mb-3">

@@ -2,7 +2,9 @@
 
 import React, { useMemo } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { MoreInfoButton } from "@/components/shared/MoreInfoButton";
+import { AllocationInfo } from "@/components/results/tabDescriptions";
 import { ASSET_CLASS_PARAMS, ASSET_CLASSES } from "@/engine/constants";
 import type { AssetAllocation } from "@/engine/types";
 
@@ -24,7 +26,15 @@ export const AllocationPieChart = React.memo(function AllocationPieChart({ alloc
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">Alocação Atual</CardTitle>
+        <div className="flex items-center justify-between">
+          <CardTitle className="text-lg">Alocação Atual</CardTitle>
+          <MoreInfoButton title="Alocação de Ativos">
+            <AllocationInfo />
+          </MoreInfoButton>
+        </div>
+        <CardDescription>
+          Distribuição atual dos seus investimentos entre classes de ativos, com diferentes níveis de retorno, risco e tributação.
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="h-[350px]" data-testid="allocation-pie-chart">

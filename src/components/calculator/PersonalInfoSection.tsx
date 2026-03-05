@@ -3,6 +3,7 @@
 import React from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { User } from "lucide-react";
 import type { PersonalInfo } from "@/engine/types";
 
 interface PersonalInfoSectionProps {
@@ -16,7 +17,10 @@ export function PersonalInfoSection({
 }: PersonalInfoSectionProps) {
   return (
     <div>
-      <h3 className="text-sm font-semibold mb-2">Dados Pessoais</h3>
+      <div className="flex items-center gap-2 mb-3">
+        <User className="h-4 w-4 text-primary" />
+        <h3 className="text-sm font-semibold">Dados Pessoais</h3>
+      </div>
       <div className="grid grid-cols-2 gap-3">
         <div className="space-y-1">
           <Label htmlFor="currentAge">Idade atual</Label>

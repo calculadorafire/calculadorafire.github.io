@@ -52,6 +52,7 @@ export function useCalculator() {
     useState<ReturnMode>(DEFAULT_RETURN_MODE);
 
   const overrideRate = returnMode.useSimpleReturn ? returnMode.simpleReturnRate : undefined;
+  const effectiveInssBenefit = assumptions.includeInss ? assumptions.inssBenefit : 0;
 
   const [monteCarloResult, setMonteCarloResult] =
     useState<MonteCarloResult | null>(null);
@@ -92,7 +93,7 @@ export function useCalculator() {
     const fireNumber = calculateFireNumber(
       annualExpenses,
       assumptions.safeWithdrawalRate,
-      assumptions.inssBenefit,
+      effectiveInssBenefit,
       assumptions.inssEligibilityAge,
       personalInfo.retirementAge
     );
@@ -112,7 +113,7 @@ export function useCalculator() {
       monthlyPassiveIncomeNet / (1 - 0.175); // Approximate avg tax
     const inssMonthly =
       personalInfo.retirementAge >= assumptions.inssEligibilityAge
-        ? assumptions.inssBenefit
+        ? effectiveInssBenefit
         : 0;
     const monthlyPassiveIncomeWithInss =
       monthlyPassiveIncomeNet + inssMonthly;
@@ -146,7 +147,7 @@ export function useCalculator() {
         allocation,
         inflation: assumptions.inflation,
         swr: assumptions.safeWithdrawalRate,
-        inssBenefit: assumptions.inssBenefit,
+        inssBenefit: effectiveInssBenefit,
         inssEligibilityAge: assumptions.inssEligibilityAge,
         lifeExpectancy: assumptions.lifeExpectancy,
         overrideReturnRate: overrideRate,
@@ -174,6 +175,7 @@ export function useCalculator() {
       allocation,
       assumptions,
       overrideRate,
+      effectiveInssBenefit,
     },
     500
   );
@@ -193,7 +195,7 @@ export function useCalculator() {
         allocation: debouncedInputs.allocation,
         inflation: debouncedInputs.assumptions.inflation,
         swr: debouncedInputs.assumptions.safeWithdrawalRate,
-        inssBenefit: debouncedInputs.assumptions.inssBenefit,
+        inssBenefit: debouncedInputs.effectiveInssBenefit,
         inssEligibilityAge: debouncedInputs.assumptions.inssEligibilityAge,
         lifeExpectancy: debouncedInputs.assumptions.lifeExpectancy,
         numSimulations: 1000,
@@ -209,7 +211,7 @@ export function useCalculator() {
         annualExpenses: debouncedInputs.financialInfo.annualExpenses,
         allocation: debouncedInputs.allocation,
         inflation: debouncedInputs.assumptions.inflation,
-        inssBenefit: debouncedInputs.assumptions.inssBenefit,
+        inssBenefit: debouncedInputs.effectiveInssBenefit,
         inssEligibilityAge: debouncedInputs.assumptions.inssEligibilityAge,
         lifeExpectancy: debouncedInputs.assumptions.lifeExpectancy,
         numSimulations: 200,

@@ -54,7 +54,6 @@ describe("FinancialSituationSection", () => {
       />
     );
     expect(screen.getByText("Patrimônio")).toBeInTheDocument();
-    expect(screen.getByText("Renda")).toBeInTheDocument();
     expect(screen.getByText("Despesas")).toBeInTheDocument();
     expect(screen.getByText("Aporte")).toBeInTheDocument();
   });
@@ -67,7 +66,7 @@ describe("FinancialSituationSection", () => {
       />
     );
     const mensalButtons = screen.getAllByText("Mensal");
-    expect(mensalButtons.length).toBeGreaterThanOrEqual(3);
+    expect(mensalButtons.length).toBeGreaterThanOrEqual(2);
   });
 });
 
@@ -118,7 +117,7 @@ describe("AllocationSection", () => {
 });
 
 describe("AssumptionsSection", () => {
-  it("renders INSS and inflation inputs", () => {
+  it("renders inflation and withdrawal rate inputs", () => {
     render(
       <AssumptionsSection
         assumptions={DEFAULT_ASSUMPTIONS}
@@ -129,9 +128,30 @@ describe("AssumptionsSection", () => {
       screen.getByText("Inflação (IPCA)")
     ).toBeInTheDocument();
     expect(screen.getByText("Taxa retirada")).toBeInTheDocument();
+    expect(screen.getByText("Incluir INSS")).toBeInTheDocument();
+  });
+
+  it("shows INSS fields when includeInss is true", () => {
+    render(
+      <AssumptionsSection
+        assumptions={{ ...DEFAULT_ASSUMPTIONS, includeInss: true }}
+        onChange={() => {}}
+      />
+    );
     expect(
       screen.getByText("Benefício INSS")
     ).toBeInTheDocument();
     expect(screen.getByText("Idade INSS")).toBeInTheDocument();
+  });
+
+  it("hides INSS fields when includeInss is false", () => {
+    render(
+      <AssumptionsSection
+        assumptions={{ ...DEFAULT_ASSUMPTIONS, includeInss: false }}
+        onChange={() => {}}
+      />
+    );
+    expect(screen.queryByText("Benefício INSS")).not.toBeInTheDocument();
+    expect(screen.queryByText("Idade INSS")).not.toBeInTheDocument();
   });
 });

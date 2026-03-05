@@ -8,6 +8,7 @@ import { MonteCarloChart } from "@/components/results/MonteCarloChart";
 import { AllocationPieChart } from "@/components/results/AllocationPieChart";
 import { WithdrawalAnalysis } from "@/components/results/WithdrawalAnalysis";
 import { InssIntegration } from "@/components/results/InssIntegration";
+import { NextActionStrip } from "@/components/results/NextActionStrip";
 import type {
   FireResult,
   YearProjection,
@@ -22,10 +23,15 @@ interface ResultsPanelProps {
   monteCarloResult: MonteCarloResult | null;
   allocation: AssetAllocation;
   withdrawalAnalysis: WithdrawalAnalysisEntry[];
+  includeInss: boolean;
   fireNumberWithoutInss: number;
   inssBenefitMonthly: number;
   inssEligibilityAge: number;
   isCalculating: boolean;
+  monthlyContribution: number;
+  netWorth: number;
+  inflation: number;
+  overrideReturnRate?: number;
 }
 
 export const ResultsPanel = React.memo(function ResultsPanel({
@@ -34,32 +40,50 @@ export const ResultsPanel = React.memo(function ResultsPanel({
   monteCarloResult,
   allocation,
   withdrawalAnalysis,
+  includeInss,
   fireNumberWithoutInss,
   inssBenefitMonthly,
   inssEligibilityAge,
   isCalculating,
+  monthlyContribution,
+  netWorth,
+  inflation,
+  overrideReturnRate,
 }: ResultsPanelProps) {
   return (
-    <div className="space-y-6">
-      <Tabs defaultValue="resumo">
+    <div className="space-y-4">
+      <FireSummaryCard
+        result={fireResult}
+        successRate={monteCarloResult?.successRate}
+      />
+
+      {includeInss && (
+        <InssIntegration
+          fireNumberWithoutInss={fireNumberWithoutInss}
+          fireNumberWithInss={fireResult.fireNumber}
+          inssBenefitMonthly={inssBenefitMonthly}
+          inssEligibilityAge={inssEligibilityAge}
+          retirementAge={fireResult.retirementAge}
+        />
+      )}
+
+      <NextActionStrip
+        currentContribution={monthlyContribution}
+        netWorth={netWorth}
+        fireNumber={fireResult.fireNumber}
+        yearsToFire={fireResult.yearsToFire}
+        allocation={allocation}
+        inflation={inflation}
+        overrideReturnRate={overrideReturnRate}
+      />
+
+      <Tabs defaultValue="projecao">
         <TabsList className="flex flex-wrap">
-          <TabsTrigger value="resumo">Resumo</TabsTrigger>
           <TabsTrigger value="projecao">Projeção</TabsTrigger>
           <TabsTrigger value="montecarlo">Monte Carlo</TabsTrigger>
           <TabsTrigger value="alocacao">Alocação</TabsTrigger>
           <TabsTrigger value="retirada">Análise de Retirada</TabsTrigger>
         </TabsList>
-
-        <TabsContent value="resumo" className="space-y-4">
-          <FireSummaryCard result={fireResult} />
-          <InssIntegration
-            fireNumberWithoutInss={fireNumberWithoutInss}
-            fireNumberWithInss={fireResult.fireNumber}
-            inssBenefitMonthly={inssBenefitMonthly}
-            inssEligibilityAge={inssEligibilityAge}
-            retirementAge={fireResult.retirementAge}
-          />
-        </TabsContent>
 
         <TabsContent value="projecao">
           <PortfolioGrowthChart

@@ -40,34 +40,29 @@ export function CalculatorForm({
   onReturnModeChange,
 }: CalculatorFormProps) {
   return (
-    <Card>
-      <CardContent className="p-4 divide-y">
-        <div className="pb-3">
-          <PersonalInfoSection
-            personalInfo={personalInfo}
-            onChange={onPersonalInfoChange}
-          />
-        </div>
-        <div className="py-3">
-          <FinancialSituationSection
-            financialInfo={financialInfo}
-            onChange={onFinancialInfoChange}
-          />
-        </div>
-        <div className="py-3">
-          <AllocationSection
-            allocation={allocation}
-            onChange={onAllocationChange}
-            returnMode={returnMode}
-            onReturnModeChange={onReturnModeChange}
-          />
-        </div>
-        <div className="pt-3">
-          <AssumptionsSection
-            assumptions={assumptions}
-            onChange={onAssumptionsChange}
-          />
-        </div>
+    <Card className="shadow-sm border-border rounded-xl">
+      <CardContent className="p-5 space-y-5">
+        <PersonalInfoSection
+          personalInfo={personalInfo}
+          onChange={onPersonalInfoChange}
+        />
+        <div className="border-t border-border/50" />
+        <FinancialSituationSection
+          financialInfo={financialInfo}
+          onChange={onFinancialInfoChange}
+        />
+        <div className="border-t border-border/50" />
+        <AllocationSection
+          allocation={allocation}
+          onChange={onAllocationChange}
+          returnMode={returnMode}
+          onReturnModeChange={onReturnModeChange}
+        />
+        <div className="border-t border-border/50" />
+        <AssumptionsSection
+          assumptions={assumptions}
+          onChange={onAssumptionsChange}
+        />
       </CardContent>
     </Card>
   );

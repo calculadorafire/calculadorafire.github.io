@@ -41,7 +41,6 @@ describe("Home Page", () => {
 
   it("renders results tabs", () => {
     render(<Home />);
-    expect(screen.getByText("Resumo")).toBeInTheDocument();
     expect(screen.getByText("Projeção")).toBeInTheDocument();
     expect(screen.getByText("Monte Carlo")).toBeInTheDocument();
     expect(screen.getByText("Alocação")).toBeInTheDocument();

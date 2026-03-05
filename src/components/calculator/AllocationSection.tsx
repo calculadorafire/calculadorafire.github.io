@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { InfoTooltip } from "@/components/shared/InfoTooltip";
 import { PercentInput } from "@/components/shared/PercentInput";
+import { PieChart } from "lucide-react";
 import { ASSET_CLASSES, ASSET_CLASS_PARAMS, FIELD_DESCRIPTIONS } from "@/engine/constants";
 import type { AssetAllocation, AssetClass, ReturnMode } from "@/engine/types";
 
@@ -44,21 +45,24 @@ export function AllocationSection({
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-2">
-        <h3 className="text-sm font-semibold">
-          Alocação de Ativos
-          {!isSimple && (
-            <span
-              className={`ml-2 text-sm font-normal ${
-                Math.abs(total - 100) < 0.1
-                  ? "text-muted-foreground"
-                  : "text-destructive"
-              }`}
-            >
-              ({total.toFixed(0)}%)
-            </span>
-          )}
-        </h3>
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
+          <PieChart className="h-4 w-4 text-primary" />
+          <h3 className="text-sm font-semibold">
+            Alocação de Ativos
+            {!isSimple && (
+              <span
+                className={`ml-2 text-sm font-normal ${
+                  Math.abs(total - 100) < 0.1
+                    ? "text-muted-foreground"
+                    : "text-destructive"
+                }`}
+              >
+                ({total.toFixed(0)}%)
+              </span>
+            )}
+          </h3>
+        </div>
         <button
           type="button"
           onClick={() =>
@@ -67,7 +71,7 @@ export function AllocationSection({
               useSimpleReturn: !isSimple,
             })
           }
-          className="text-xs text-muted-foreground hover:text-foreground transition-colors underline underline-offset-2"
+          className="text-xs text-muted-foreground hover:text-primary transition-colors underline underline-offset-2"
         >
           {isSimple ? "Modo detalhado" : "Modo simplificado"}
         </button>

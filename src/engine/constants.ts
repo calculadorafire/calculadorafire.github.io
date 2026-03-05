@@ -60,6 +60,7 @@ export const DEFAULT_ALLOCATION: AssetAllocation = {
 export const DEFAULT_ASSUMPTIONS: Assumptions = {
   inflation: 0.04,
   safeWithdrawalRate: 0.04,
+  includeInss: false,
   inssBenefit: 0,
   inssEligibilityAge: 65,
   lifeExpectancy: 90,

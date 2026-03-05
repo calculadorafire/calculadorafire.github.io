@@ -44,6 +44,7 @@ export interface FinancialInfo {
 export interface Assumptions {
   inflation: number;
   safeWithdrawalRate: number;
+  includeInss: boolean;
   inssBenefit: number;
   inssEligibilityAge: number;
   lifeExpectancy: number;

@@ -100,13 +100,13 @@ export const FIELD_DESCRIPTIONS: Record<string, string> = {
   renda:
     "Sua renda bruta total, incluindo salário, renda de aluguéis, freelances e outras fontes. Pode ser informada mensal ou anualmente.",
   despesas:
-    "Total dos seus gastos recorrentes: moradia, alimentação, transporte, saúde, lazer, etc. Quanto menor suas despesas, mais rápido você atinge o FIRE.",
+    "Total dos seus gastos recorrentes: moradia, alimentação, transporte, saúde, lazer, etc. Este valor é o numerador no cálculo FIRE (Número FIRE = Despesas Anuais ÷ Taxa de Retirada). Quanto menor suas despesas, menor o patrimônio necessário para se aposentar.",
   aporte:
     "Valor que você investe regularmente além das despesas. É a diferença entre sua renda e seus gastos que vai para investimentos.",
   inflacao:
     "Índice oficial de inflação do Brasil. Mede a variação de preços ao consumidor. A média histórica recente gira em torno de 4-5% ao ano.",
   taxaRetirada:
-    "Percentual do patrimônio que você retira anualmente na aposentadoria. A regra clássica dos 4% sugere que esse valor é sustentável por 30+ anos, mas no Brasil recomenda-se entre 3,5% e 4%.",
+    "Percentual do patrimônio que você retira anualmente na aposentadoria. É o denominador no cálculo FIRE (Número FIRE = Despesas Anuais ÷ Taxa de Retirada). A regra clássica dos 4% sugere que esse valor é sustentável por 30+ anos, mas no Brasil recomenda-se entre 3,5% e 4%.",
   beneficioInss:
     "Valor mensal estimado que você receberá do INSS ao atingir a idade de elegibilidade. Reduz o valor que seu patrimônio precisa gerar.",
   tesouroSelic:

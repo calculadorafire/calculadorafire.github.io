@@ -121,4 +121,6 @@ export const FIELD_DESCRIPTIONS: Record<string, string> = {
     "Investimento em empresas da bolsa brasileira. Maior potencial de retorno, mas com alta volatilidade. Recomendado para horizontes longos.",
   fiis:
     "Fundos de Investimento Imobiliário. Cotas negociadas em bolsa que investem em imóveis ou títulos imobiliários. Distribuem rendimentos mensais isentos de IR (sob certas condições).",
+  expectativaVida:
+    "Idade até a qual você espera viver. Usada para calcular o horizonte da projeção patrimonial, simulações Monte Carlo e análise de retirada. A expectativa de vida média no Brasil é de ~76 anos, mas para planejamento financeiro recomenda-se usar 85-95 anos.",
 };

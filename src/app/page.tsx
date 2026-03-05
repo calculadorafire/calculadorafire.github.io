@@ -63,9 +63,12 @@ export default function Home() {
                 inssEligibilityAge={assumptions.inssEligibilityAge}
                 isCalculating={isCalculating}
                 monthlyContribution={financialInfo.contribution}
+                contributionPeriod={financialInfo.contributionPeriod}
                 netWorth={financialInfo.netWorth}
                 inflation={assumptions.inflation}
                 overrideReturnRate={overrideRate}
+                useSimpleReturn={returnMode.useSimpleReturn}
+                simpleReturnRate={returnMode.simpleReturnRate}
               />
             </div>
           </div>

@@ -47,11 +47,22 @@ export function PersonalInfoSection({
             max={100}
             value={personalInfo.retirementAge}
             onChange={(e) => {
-              const val = parseInt(e.target.value) || personalInfo.currentAge + 1;
-              onChange({
-                ...personalInfo,
-                retirementAge: Math.max(val, personalInfo.currentAge + 1),
-              });
+              const parsed = parseInt(e.target.value);
+              if (!isNaN(parsed)) {
+                onChange({
+                  ...personalInfo,
+                  retirementAge: parsed,
+                });
+              }
+            }}
+            onBlur={() => {
+              const minAge = personalInfo.currentAge + 1;
+              if (personalInfo.retirementAge < minAge) {
+                onChange({
+                  ...personalInfo,
+                  retirementAge: minAge,
+                });
+              }
             }}
           />
           {personalInfo.retirementAge <= personalInfo.currentAge && (

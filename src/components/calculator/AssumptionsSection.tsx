@@ -56,6 +56,26 @@ export function AssumptionsSection({
           </div>
         </div>
 
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <Label htmlFor="lifeExpectancy">Expectativa de vida</Label>
+            <InfoTooltip content={FIELD_DESCRIPTIONS.expectativaVida} />
+          </div>
+          <Input
+            id="lifeExpectancy"
+            type="number"
+            min={50}
+            max={120}
+            value={assumptions.lifeExpectancy}
+            onChange={(e) =>
+              onChange({
+                ...assumptions,
+                lifeExpectancy: parseInt(e.target.value) || 90,
+              })
+            }
+          />
+        </div>
+
         <div className="space-y-2">
           <button
             type="button"

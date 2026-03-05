@@ -49,11 +49,10 @@ export function calculateYearsToFire(
   if (fireNumber <= 0) return 0;
 
   const nominalReturn = overrideReturnRate ?? calculateWeightedReturn(allocation);
-  const realReturn = (1 + nominalReturn) / (1 + inflation) - 1;
   let balance = netWorth;
 
   for (let year = 1; year <= 100; year++) {
-    balance = balance * (1 + realReturn) + annualContribution;
+    balance = balance * (1 + nominalReturn) + annualContribution;
     if (balance >= fireNumber) return year;
   }
 
